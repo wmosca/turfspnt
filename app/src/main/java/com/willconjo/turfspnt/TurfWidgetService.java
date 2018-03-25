@@ -49,6 +49,22 @@ public class TurfWidgetService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+//        if(intent.getStringExtra("dailyLimit") != null)
+//        {
+//            String limits = intent.getStringExtra("dailyLimit") + " " + intent.getStringExtra("weeklyLimit") + " " + intent.getStringExtra("monthlyLimit");
+//            System.out.println("LIMITS: " + limits);
+//            FileOutputStream outputStream;
+//            try {
+//                outputStream = openFileOutput("limits.txt", Context.MODE_PRIVATE);
+//                outputStream.write(limits.getBytes());
+//                outputStream.close();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+
+        Double newExpenditures = 0.0;
         // Enable the worlds shittiest ThreadPolicy
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -62,13 +78,12 @@ public class TurfWidgetService extends Service {
             Node turfUpdateMessage = turfUpdateMessageDoc.getFirstChild();
             NodeList transactionStream = turfUpdateMessage.getLastChild().getChildNodes();
             String transactionsString = "";
-            Double newExpenditures = 0.0;
             for(int i=0;i<transactionStream.getLength();i++){
-                transactionsString = transactionsString + nodeToString(transactionStream.item(i)) + "\n";
-                if(transactionStream.item(i).getFirstChild().getTextContent().equals("1")){
-                    newExpenditures = newExpenditures + Double.parseDouble(transactionStream.item(i).getChildNodes().item(1).getTextContent());
-                }
+                System.out.println(nodeToString(transactionStream.item(i)));
+                transactionsString = transactionsString + nodeToString(transactionStream.item(i));
             }
+
+            System.out.println("TRANS STRING: " + transactionsString);
 
             FileOutputStream outputStream;
             try {
@@ -79,27 +94,74 @@ public class TurfWidgetService extends Service {
                 e.printStackTrace();
             }
 
-            /*FileInputStream inputStream;
+            FileInputStream inputStream;
+            String s = "";
             try {
                 inputStream = openFileInput("turfTransactions.xml");
                 char c;
                 int byt;
-                String s = "";
                 while ((byt = inputStream.read()) != -1){
                     c = (char) byt;
                     s = s + c;
                 }
             }catch(Exception e){
                 System.out.println("Failed to READ");
-            }*/
+                System.err.println(e);
+                e.printStackTrace();
+            }
+            System.out.println("THIS IS S YOU MONGOLOID: " + s);
+            s = "<Transactions>" + s + "</Transactions>";
+
+            DocumentBuilder newDocBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document currentTransactions = newDocBuilder.parse(new ByteArrayInputStream(s.getBytes()));
+            System.out.println(currentTransactions.getNodeName());
+            Node transactionRoot = currentTransactions.getFirstChild();
+            System.out.println(transactionRoot.getTextContent());
+            NodeList transStream= transactionRoot.getChildNodes();
+
+            System.out.println("NODE TO STRING OF ROOT: " + nodeToString(transactionRoot));
+
+            for(int i=0; i<transStream.getLength(); i++) {
+                System.out.println(transStream.toString());
+                System.out.println(transStream.item(i).getTextContent());
+                if (transStream.item(i).getFirstChild().getTextContent().equals("1")) {
+                    newExpenditures = newExpenditures + Double.parseDouble(transactionStream.item(i).getChildNodes().item(1).getTextContent());
+                }
+            }
+
 
         }catch(Exception e) {
             System.out.println("Failed to get TUM");
             System.err.println(e);
+            e.printStackTrace();
         }
 
+//        FileInputStream inputStream;
+//        String s = "";
+//        try {
+//            inputStream = openFileInput("limits.txt");
+//            char c;
+//            int byt;
+//            while ((byt = inputStream.read()) != -1){
+//                c = (char) byt;
+//                s = s + c;
+//            }
+//        }catch(Exception e){
+//            System.out.println("Failed to READ2");
+//            System.err.println(e);
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println(s);
+//        String[] moneyLimits = s.split(" ");
+
+        System.out.println(newExpenditures);
+        String dString =  newExpenditures + " " + "00" + " " + "100";
+        String wString =  newExpenditures + " " + "00" + " " + "750";
+        String mString =  newExpenditures + " " + "00" + " " + "3000";
+
         // Broadcast intents to the three widgets
-        updateWidgets(getApplicationContext());
+        updateWidgets(getApplicationContext(), dString, wString, mString);
 
         return START_STICKY;
     }
@@ -146,7 +208,7 @@ public class TurfWidgetService extends Service {
     // HTTP POST request
     private String getTUM() throws Exception {
 
-        String url = "http://155.246.213.67:55555/tum";
+        String url = "http://155.246.204.59:55555/tum";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 

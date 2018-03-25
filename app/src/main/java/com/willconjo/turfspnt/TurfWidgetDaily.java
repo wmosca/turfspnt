@@ -52,8 +52,8 @@ public class TurfWidgetDaily extends AppWidgetProvider {
                 String numerator = intent.getStringExtra("dollars");
                 String numeratorCents = intent.getStringExtra("cents");
                 String denominator = intent.getStringExtra("total");
-                int progress = (int) (Integer.parseInt(numerator) / Integer.parseInt(denominator) * 100);
-                String dollars = Integer.toString(Integer.parseInt(denominator) - Integer.parseInt(numerator));
+                int progress = (int) (Double.parseDouble(numerator) / Integer.parseInt(denominator) * 100);
+                String dollars = Integer.toString((int)(Integer.parseInt(denominator) - Double.parseDouble(numerator)));
 
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.turf_widget_daily);
