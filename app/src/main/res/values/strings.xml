@@ -6,4 +6,5 @@
     <string name="widgetWeeklyTitleText">Weekly</string>
     <string name="widgetMonthlyBudgetText">turf Budget Info</string>
     <string name="widgetMonthlyTitleText">Monthly</string>
+    <string name="title_activity_turf_home_page">turf</string>
 </resources>
