@@ -67,9 +67,12 @@
         <activity
             android:name=".TurfAccountConfiguration"
             android:label="@string/title_activity_turf_account_configuration"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".TurfAddAccountPage"
+            android:theme="@style/AppThemeNoActionBar"/>
+        <activity
+            android:name=".TurfAccountPage"
             android:theme="@style/AppThemeNoActionBar"/>
     </application>
 

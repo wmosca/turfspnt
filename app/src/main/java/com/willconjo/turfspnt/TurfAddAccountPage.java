@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -23,7 +24,6 @@ public class TurfAddAccountPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turf_add_account_page);
-
 
         Button createButton = findViewById(R.id.createButton);
 
@@ -57,27 +57,21 @@ public class TurfAddAccountPage extends AppCompatActivity {
                         String dString = totalSpentDollars + " " + totalSpentCents + " " + dailyLimit;
                         String wString = totalSpentDollars + " " + totalSpentCents + " " + weeklyLimit;
                         String mString = totalSpentDollars + " " + totalSpentCents + " " + monthlyLimit;
-                        // Create WTFs
-                        /*FileOutputStream dOutputStream;
-                        FileOutputStream wOutputStream;
-                        FileOutputStream mOutputStream;
+                        // Create account file
+                        FileOutputStream accountWriter;
                         try {
-                            dOutputStream = openFileOutput("dailyWTF.txt", Context.MODE_PRIVATE);
-                            wOutputStream = openFileOutput("weeklyWTF.txt", Context.MODE_PRIVATE);
-                            mOutputStream = openFileOutput("monthlyWTF.txt", Context.MODE_PRIVATE);
-                            dOutputStream.write(dString.getBytes());
-                            wOutputStream.write(wString.getBytes());
-                            mOutputStream.write(mString.getBytes());
-                            dOutputStream.close();
-                            wOutputStream.close();
-                            mOutputStream.close();
-                            System.out.println("Wrote the three WTFs");
+                            accountWriter = openFileOutput("accounts.txt", Context.MODE_PRIVATE);
+                            accountWriter.write("demo 94153815323555238".getBytes());
+                            accountWriter.close();
+                            System.out.println("Writing new account file");
                         } catch (Exception e) {
                             e.printStackTrace();
-                        }*/
+                        }
 
                         updateWidgets(getApplicationContext(), dString, wString, mString);
-
+                        intentForService.putExtra("monthlyLimit", monthlyLimit);
+                        intentForService.putExtra("dailyLimit", dailyLimit);
+                        intentForService.putExtra("weeklyLimit", weeklyLimit);
                         startService(intentForService);
                         startActivity(intent);
                     }

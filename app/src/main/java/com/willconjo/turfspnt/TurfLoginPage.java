@@ -23,6 +23,7 @@ public class TurfLoginPage extends AppCompatActivity {
             new View.OnClickListener(){
                 public void onClick(View view){
                     Intent intent = new Intent(TurfLoginPage.this, TurfHomePage.class);
+                    intent.putExtra("asdf", "new");
                     startActivity(intent);
                 }
             }

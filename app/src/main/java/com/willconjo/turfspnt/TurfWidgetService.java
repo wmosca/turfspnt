@@ -99,7 +99,7 @@ public class TurfWidgetService extends Service {
         }
 
         // Broadcast intents to the three widgets
-        updateWidgets(getApplicationContext());
+        //updateWidgets(getApplicationContext());
 
         return START_STICKY;
     }
