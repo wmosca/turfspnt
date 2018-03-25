@@ -18,7 +18,7 @@ public class TurfWidgetService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Let it continue running until it is stopped.
 
-        
+
 
         return START_STICKY;
     }

@@ -55,6 +55,11 @@
             android:name=".TurfWidgetService"
             android:enabled="true"
             android:exported="true"></service>
+        <activity
+            android:name=".TurfHomePage"
+            android:label="@string/title_activity_turf_home_page"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        
     </application>
 
 </manifest>
