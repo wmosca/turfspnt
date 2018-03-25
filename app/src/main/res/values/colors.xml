@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#a7a7a7</color>
     <color name="colorBackground">#e2e0d3</color>
+    <color name="widgetTextNormal">#FFFFFF</color>
+    <color name="widgetTextUnder">#970000</color>
 </resources>

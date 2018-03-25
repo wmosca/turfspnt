@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#666"
+    android:padding="@dimen/widget_margin">
+
+    <TextView
+        android:id="@+id/widgetDailyBudgetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="8dp"
+        android:background="#666"
+        android:text="@string/widgetDailyBudgetText"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widgetDailyTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/widgetDailyBudgetText"
+        android:layout_centerHorizontal="true"
+        android:text="@string/widgetDailyTitleText"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/widgetDailyProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/widgetDailyBudgetText"
+        android:layout_centerHorizontal="true"
+        android:max="100"
+        android:progress="50"
+        />
+
+</RelativeLayout>

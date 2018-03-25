@@ -1,3 +1,9 @@
 <resources>
     <string name="appName">turf</string>
+    <string name="widgetDailyBudgetText">turf Budget Info</string>
+    <string name="widgetDailyTitleText">Daily</string>
+    <string name="widgetWeeklyBudgetText">turf Budget Info</string>
+    <string name="widgetWeeklyTitleText">Weekly</string>
+    <string name="widgetMonthlyBudgetText">turf Budget Info</string>
+    <string name="widgetMonthlyTitleText">Monthly</string>
 </resources>
