@@ -1,8 +1,11 @@
 package com.willconjo.turfspnt;
 
 import android.app.Service;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.StrictMode;
 
@@ -98,6 +101,7 @@ public class TurfWidgetService extends Service {
         // Write three separate WTFs
 
         // Broadcast intents to the three widgets
+        updateWidgets(getApplicationContext());
 
         return START_STICKY;
     }
@@ -112,6 +116,21 @@ public class TurfWidgetService extends Service {
             System.out.println("nodeToString Transformer Exception");
         }
         return sw.toString();
+    }
+
+    public static void updateWidgets(Context context) {
+        Intent intent = new Intent(context.getApplicationContext(), TurfWidgetDaily.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
+        // since it seems the onUpdate() is only fired on that:
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+        int[] ids = widgetManager.getAppWidgetIds(new ComponentName(context, TurfWidgetDaily.class));
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            widgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
+
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        context.sendBroadcast(intent);
     }
 
     // HTTP POST request
