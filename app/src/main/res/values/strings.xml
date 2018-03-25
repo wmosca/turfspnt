@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Turfspnt</string>
-    <string name="appwidget_text">EXAMPLE</string>
+    <string name="widgetDailyBudgetText">turf Budget Info</string>
+    <string name="widgetDailyTitleText">Daily</string>
+    <string name="widgetWeeklyBudgetText">turf Budget Info</string>
+    <string name="widgetWeeklyTitleText">Weekly</string>
+    <string name="widgetMonthlyBudgetText">turf Budget Info</string>
+    <string name="widgetMonthlyTitleText">Monthly</string>
     <string name="add_widget">Add widget</string>
 </resources>
