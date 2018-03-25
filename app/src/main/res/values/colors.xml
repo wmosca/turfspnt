@@ -5,8 +5,8 @@
     <color name="colorAccent">#a7a7a7</color>
     <color name="colorBackground">#e2e0d3</color>
     <color name="widgetTextNormal">#ffffff</color>
-    <color name="widgetTextOver">#b70101</color>
+    <color name="widgetTextOver">#d12d2d</color>
     <color name="widgetRentProgress">#ed0000</color>
     <color name="widgetProgressLightColor">#308918</color>
-    <color name="widgetTextUnder">#3bab1d</color>
+    <color name="widgetTextUnder">#4cac32</color>
 </resources>

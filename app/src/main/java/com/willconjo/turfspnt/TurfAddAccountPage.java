@@ -43,7 +43,7 @@ public class TurfAddAccountPage extends AppCompatActivity {
                         int rentDollars = Integer.parseInt(rentStringArr[0]);
                         int rentCents = Integer.parseInt(rentStringArr[1]);
                         int monthlyDollars;
-                        if(monthlyString.equals("0.0")){
+                        if(monthlyString.equals("0.00")){
                             monthlyDollars = 0;
                         }else{
                             monthlyDollars = Integer.parseInt(monthlyString);
@@ -58,7 +58,7 @@ public class TurfAddAccountPage extends AppCompatActivity {
                         String wString = totalSpentDollars + " " + totalSpentCents + " " + weeklyLimit;
                         String mString = totalSpentDollars + " " + totalSpentCents + " " + monthlyLimit;
                         // Create WTFs
-                        FileOutputStream dOutputStream;
+                        /*FileOutputStream dOutputStream;
                         FileOutputStream wOutputStream;
                         FileOutputStream mOutputStream;
                         try {
@@ -74,29 +74,42 @@ public class TurfAddAccountPage extends AppCompatActivity {
                             System.out.println("Wrote the three WTFs");
                         } catch (Exception e) {
                             e.printStackTrace();
-                        }
+                        }*/
 
-                        startService(intentForService);
+                        updateWidgets(getApplicationContext(), dString, wString, mString);
+
+                        //startService(intentForService);
                         startActivity(intent);
-                        updateWidgets(getApplicationContext());
                     }
                 }
         );
     }
 
-    public static void updateWidgets(Context context) {
-        Intent intent = new Intent(context.getApplicationContext(), TurfWidgetDaily.class);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
-        // since it seems the onUpdate() is only fired on that:
-        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-        int[] ids = widgetManager.getAppWidgetIds(new ComponentName(context, TurfWidgetDaily.class));
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            widgetManager.notifyAppWidgetViewDataChanged(ids, android.R.id.list);
-
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-        context.sendBroadcast(intent);
+    public static void updateWidgets(Context context, String dString, String wString, String mString) {
+        String[] dParts = dString.split(" ");
+        String[] wParts = wString.split(" ");
+        String[] mParts = mString.split(" ");
+        Intent dIntent = new Intent(context.getApplicationContext(), TurfWidgetDaily.class);
+        Intent wIntent = new Intent(context.getApplicationContext(), TurfWidgetWeekly.class);
+        Intent mIntent = new Intent(context.getApplicationContext(), TurfWidgetMonthly.class);
+        System.out.println("dParts[0] = "+ dParts[0]);
+        System.out.println("dParts[1] = "+ dParts[1]);
+        System.out.println("dParts[2] = "+ dParts[2]);
+        dIntent.putExtra("dollars", dParts[0]);
+        dIntent.putExtra("cents", dParts[1]);
+        dIntent.putExtra("total", dParts[2]);
+        wIntent.putExtra("dollars", wParts[0]);
+        wIntent.putExtra("cents", wParts[1]);
+        wIntent.putExtra("total", wParts[2]);
+        mIntent.putExtra("dollars", mParts[0]);
+        mIntent.putExtra("cents", mParts[1]);
+        mIntent.putExtra("total", mParts[2]);
+        dIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        wIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        mIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        context.sendBroadcast(dIntent);
+        context.sendBroadcast(wIntent);
+        context.sendBroadcast(mIntent);
     }
 
 }

@@ -2,7 +2,9 @@ package com.willconjo.turfspnt;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
 
 /**
@@ -38,6 +40,38 @@ public class TurfWidgetWeekly extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent){
+        if(intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE")) {
+            if(intent.getStringExtra("dollars") != null) {
+                String numerator = intent.getStringExtra("dollars");
+                String numeratorCents = intent.getStringExtra("cents");
+                String denominator = intent.getStringExtra("total");
+                int progress = (int) (Integer.parseInt(numerator) / Integer.parseInt(denominator) * 100);
+                String dollars = Integer.toString(Integer.parseInt(denominator) - Integer.parseInt(numerator));
+
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.turf_widget_weekly);
+                rv.setTextViewText(R.id.widgetWeeklyBudgetDollarsText, "$" + dollars);
+                rv.setTextViewText(R.id.widgetWeeklyBudgetCentsText, numeratorCents);
+                rv.setProgressBar(R.id.weeklyProgressBar, 100, progress, false);
+
+                if (progress >= 75) {
+                    rv.setTextColor(R.id.widgetWeeklyBudgetDollarsText, context.getResources().getColor(R.color.widgetTextOver));
+                    rv.setTextColor(R.id.widgetWeeklyBudgetCentsText, context.getResources().getColor(R.color.widgetTextOver));
+                }else if (progress <= 25){
+                    rv.setTextColor(R.id.widgetWeeklyBudgetDollarsText, context.getResources().getColor(R.color.widgetTextUnder));
+                    rv.setTextColor(R.id.widgetWeeklyBudgetCentsText, context.getResources().getColor(R.color.widgetTextUnder));
+                }
+
+                AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+                int[] ids = widgetManager.getAppWidgetIds(new ComponentName(context, TurfWidgetWeekly.class));
+
+                appWidgetManager.partiallyUpdateAppWidget(ids[0], rv);
+            }
+        }
     }
 }
 

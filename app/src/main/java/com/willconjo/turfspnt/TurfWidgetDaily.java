@@ -2,9 +2,13 @@ package com.willconjo.turfspnt;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
+import android.widget.TextView;
+
+import java.io.FileInputStream;
 
 /**
  * Implementation of App Widget functionality.
@@ -43,7 +47,33 @@ public class TurfWidgetDaily extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        //System.out.println("Received from Daily");
+        if(intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE")) {
+            if(intent.getStringExtra("dollars") != null) {
+                String numerator = intent.getStringExtra("dollars");
+                String numeratorCents = intent.getStringExtra("cents");
+                String denominator = intent.getStringExtra("total");
+                int progress = (int) (Integer.parseInt(numerator) / Integer.parseInt(denominator) * 100);
+                String dollars = Integer.toString(Integer.parseInt(denominator) - Integer.parseInt(numerator));
+
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.turf_widget_daily);
+                rv.setTextViewText(R.id.widgetDailyBudgetDollarsText, "$" + dollars);
+                if (progress >= 75) {
+                    rv.setTextColor(R.id.widgetDailyBudgetDollarsText, context.getResources().getColor(R.color.widgetTextOver));
+                    rv.setTextColor(R.id.widgetDailyBudgetCentsText, context.getResources().getColor(R.color.widgetTextOver));
+                }else if (progress <= 25){
+                    rv.setTextColor(R.id.widgetDailyBudgetDollarsText, context.getResources().getColor(R.color.widgetTextUnder));
+                    rv.setTextColor(R.id.widgetDailyBudgetCentsText, context.getResources().getColor(R.color.widgetTextUnder));
+                }
+                rv.setTextViewText(R.id.widgetDailyBudgetCentsText, numeratorCents);
+                rv.setProgressBar(R.id.dailyProgressBar, 100, progress, false);
+
+                AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+                int[] ids = widgetManager.getAppWidgetIds(new ComponentName(context, TurfWidgetDaily.class));
+
+                appWidgetManager.partiallyUpdateAppWidget(ids[0], rv);
+            }
+        }
     }
 }
 
