@@ -78,7 +78,7 @@ public class TurfAddAccountPage extends AppCompatActivity {
 
                         updateWidgets(getApplicationContext(), dString, wString, mString);
 
-                        //startService(intentForService);
+                        startService(intentForService);
                         startActivity(intent);
                     }
                 }
