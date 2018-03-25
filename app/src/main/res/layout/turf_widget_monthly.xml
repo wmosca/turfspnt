@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#666"
+    android:padding="@dimen/widget_margin">
+
+    <TextView
+        android:id="@+id/widgetMonthlyBudgetDollarsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/comfortaa"
+        android:includeFontPadding="false"
+        android:text="@string/widgetMonthlyBudgetDollarsText"
+        android:textColor="@color/widgetTextNormal"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widgetMonthlyBudgetCentsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/widgetMonthlyBudgetDollarsText"
+        android:layout_toRightOf="@id/widgetMonthlyBudgetDollarsText"
+        android:layout_alignTop="@id/widgetMonthlyBudgetDollarsText"
+        android:fontFamily="@font/comfortaa"
+        android:includeFontPadding="false"
+        android:text="@string/widgetMonthlyBudgetCentsText"
+        android:textColor="@color/widgetTextNormal"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widgetMonthlyTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/widgetMonthlyBudgetDollarsText"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/comfortaa"
+        android:text="@string/widgetMonthlyTitleText"
+        android:textColor="@color/widgetTextNormal"
+        android:textSize="18sp"
+        android:paddingBottom="2dp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/MonthlyProgressBar"
+        style="@style/CustomProgressBar"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/widgetMonthlyBudgetDollarsText"
+        android:layout_centerHorizontal="true"
+        android:progress="50"
+        android:max="100"
+        android:secondaryProgress="75"
+        android:layout_marginTop="2dp"/>
+
+
+</RelativeLayout>

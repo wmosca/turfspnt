@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#666"
+    android:padding="@dimen/widget_margin">
+
+    <TextView
+        android:id="@+id/widgetDailyBudgetDollarsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/comfortaa"
+        android:includeFontPadding="false"
+        android:text="@string/widgetDailyBudgetDollarsText"
+        android:textColor="@color/widgetTextNormal"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widgetDailyBudgetCentsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/widgetDailyBudgetDollarsText"
+        android:layout_toRightOf="@id/widgetDailyBudgetDollarsText"
+        android:layout_alignTop="@id/widgetDailyBudgetDollarsText"
+        android:fontFamily="@font/comfortaa"
+        android:includeFontPadding="false"
+        android:text="@string/widgetDailyBudgetCentsText"
+        android:textColor="@color/widgetTextNormal"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widgetDailyTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/widgetDailyBudgetDollarsText"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/comfortaa"
+        android:text="@string/widgetDailyTitleText"
+        android:textColor="@color/widgetTextNormal"
+        android:textSize="18sp"
+        android:paddingBottom="2dp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/dailyProgressBar"
+        style="@style/CustomProgressBar"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/widgetDailyBudgetDollarsText"
+        android:layout_centerHorizontal="true"
+        android:progress="50"
+        android:max="100"
+        android:secondaryProgress="75"
+        android:layout_marginTop="2dp"/>
+
+
+</RelativeLayout>

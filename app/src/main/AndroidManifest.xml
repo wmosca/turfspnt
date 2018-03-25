@@ -23,14 +23,32 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <receiver android:name=".TurfWidget">
+        <receiver android:name=".TurfWidgetWeekly">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/turf_widget_info" />
+                android:resource="@xml/turf_widget_weekly_info" />
+        </receiver>
+        <receiver android:name=".TurfWidgetDaily">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/turf_widget_daily_info" />
+        </receiver>
+        <receiver android:name=".TurfWidgetMonthly">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/turf_widget_monthly_info" />
         </receiver>
     </application>
 
