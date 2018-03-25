@@ -38,8 +38,6 @@
         <receiver android:name=".TurfWidgetDaily">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-
-                <category android:name="and"
             </intent-filter>
 
             <meta-data

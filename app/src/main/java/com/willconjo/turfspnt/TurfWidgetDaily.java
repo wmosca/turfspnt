@@ -3,6 +3,7 @@ package com.willconjo.turfspnt;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
 
 /**
@@ -38,6 +39,11 @@ public class TurfWidgetDaily extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        //System.out.println("Received from Daily");
     }
 }
 
