@@ -8,15 +8,15 @@ import android.widget.RemoteViews;
 /**
  * Implementation of App Widget functionality.
  */
-public class TurfWidget extends AppWidgetProvider {
+public class TurfWidgetMonthly extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        CharSequence widgetText = context.getString(R.string.widgetDailyBudgetDollarsText);
+        CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.turf_widget);
-        views.setTextViewText(R.id.widgetDailyBudgetDollarsText, widgetText);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.turf_widget_monthly);
+        //views.setTextViewText(R.id.widgetMonthlyTitleText, widgetText);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
