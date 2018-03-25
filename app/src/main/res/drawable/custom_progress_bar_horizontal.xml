@@ -35,8 +35,8 @@
                 <corners
                     android:radius="5dip" />
                 <gradient
-                    android:startColor="@color/colorPrimary"
-                    android:endColor="@color/widgetProgressLightColor"
+                    android:startColor="@color/widgetProgressLightColor"
+                    android:endColor="@color/widgetTextUnder"
                     android:angle="90" />
             </shape>
         </clip>
