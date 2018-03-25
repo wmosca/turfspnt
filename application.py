@@ -52,6 +52,7 @@ def stream():
                     done = True
         if done:
             break
+    updateTum()
     return et.tostring(tum)
     
 def GenerateData(limit):
@@ -113,8 +114,11 @@ def setupDB():
         c.execute("INSERT into data VALUES ('demo@turf.com',?, ?)", (data, LastAcc))
         c.commit()
         c.close()
-       
-        
+ 
+ 
+def updateTum():
+    c = sqlite3.connect('db.db', detect_types=sqlite3.PARSE_DECLTYPES)
+    c.execute("UPDATE data set LastAcc = ?",(datetime.datetime.now())
 
 
 def dateCheck(date1, date2, date3):
