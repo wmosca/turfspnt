@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.willconjo.turfspnt">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".TurfLoginPage"
             android:theme="@style/AppThemeNoActionBar">
@@ -54,18 +55,23 @@
                 android:resource="@xml/turf_widget_monthly_info" />
         </receiver>
 
-        <service android:name=".TurfWidgetService"
-                 android:enabled="true"
-                 android:exported="true">
+        <service
+            android:name=".TurfWidgetService"
+            android:enabled="true"
+            android:exported="true" />
 
-        </service>
         <activity
             android:name=".TurfHomePage"
             android:label="dicks"
-            android:theme="@style/AppThemeNoActionBar">
-
-        </activity>
-        
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".TurfAccountConfig"
+            android:label="@string/title_activity_turf_account_config"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TurfAccountConfiguration"
+            android:label="@string/title_activity_turf_account_configuration"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
