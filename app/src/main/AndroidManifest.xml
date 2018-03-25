@@ -18,7 +18,6 @@
             android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -64,14 +63,14 @@
             android:name=".TurfHomePage"
             android:label="dicks"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity
-            android:name=".TurfAccountConfig"
-            android:label="@string/title_activity_turf_account_config"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".TurfAccountConfiguration"
             android:label="@string/title_activity_turf_account_configuration"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TurfAddAccountPage"
+            android:theme="@style/AppThemeNoActionBar"/>
     </application>
 
 </manifest>
